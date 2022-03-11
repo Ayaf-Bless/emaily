@@ -1,0 +1,14 @@
+{
+  "name": "emaily",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Ayaf-Bless/emaily.git",
+  "author": "<blessambel1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  }
+}
