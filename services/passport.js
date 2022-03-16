@@ -9,8 +9,12 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
-    function (accessToken, refreshToken, profile, done) {
-      new User({ googleId: profile.id }).save();
+    async function (accessToken, refreshToken, profile, done) {
+      console.log(profile);
+      const user = await User.findOne({ googleId: profile.id });
+      if (!user) {
+        await User.create({ googleId: profile.id });
+      }
     }
   )
 );
