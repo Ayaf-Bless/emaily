@@ -6,6 +6,12 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
+passport.deserializeUser(async (userId, done) => {
+  const user = await User.findById(userId);
+  // if (!user) { }
+  done(null, user);
+});
+
 passport.use(
   new GoogleStrategy(
     {
