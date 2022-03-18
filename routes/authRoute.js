@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { route } = require("express/lib/application");
 const passport = require("passport");
 
 router.get(
@@ -10,6 +9,11 @@ router.get(
 );
 
 router.get("/auth/google/callback", passport.authenticate("google"));
+
+router.get("/api/logout", (req, res) => {
+  req.logout();
+  res.send(req.user);
+});
 
 router.get("/api/me", (req, res) => {
   return res.send(req.user);
