@@ -10,11 +10,12 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
     async function (accessToken, refreshToken, profile, done) {
-      console.log(profile);
       const user = await User.findOne({ googleId: profile.id });
       if (!user) {
-        await User.create({ googleId: profile.id });
+        const newUser = await User.create({ googleId: profile.id });
+        done(null, newUser);
       }
+      done(null, user);
     }
   )
 );
