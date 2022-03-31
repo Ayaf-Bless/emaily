@@ -23,7 +23,7 @@ passport.use(
       const user = await User.findOne({ googleId: profile.id });
       if (!user) {
         const newUser = await User.create({ googleId: profile.id });
-        done(null, newUser);
+        return done(null, newUser);
       }
       done(null, user);
     }
